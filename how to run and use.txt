@@ -1,2 +1,0 @@
-to run it do npm install then npm run dev, itll be in http://localhost:5173/
-just need a backend and i think u can use godaddy or squareup idk

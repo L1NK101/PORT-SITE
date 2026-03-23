@@ -13,7 +13,9 @@ import Footer from '@/components/Footer'
 export default function ProductDetailPage() {
   const params = useParams()
   const router = useRouter()
-  const product = getProductById(params.id as string)
+  const rawId = params?.id
+  const productId = Array.isArray(rawId) ? rawId[0] : rawId
+  const product = productId ? getProductById(productId) : null
   const addItem = useCartStore((state) => state.addItem)
   const openCart = useCartStore((state) => state.openCart)
   

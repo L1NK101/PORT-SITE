@@ -12,12 +12,15 @@ export const useCart = () => {
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(() => {
-    const saved = localStorage.getItem('cartItems')
+    if (typeof window === 'undefined') {
+      return []
+    }
+    const saved = window.localStorage.getItem('cartItems')
     return saved ? JSON.parse(saved) : []
   })
 
   useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems))
+    window.localStorage.setItem('cartItems', JSON.stringify(cartItems))
   }, [cartItems])
 
   const addToCart = (product, quantity = 1) => {

@@ -1,11 +1,14 @@
+'use client'
+
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useRouter } from 'next/navigation'
 import { useCart } from '../context/CartContext'
+import Navbar from '../../components/Navbar'
 import './Checkout.css'
 
 const Checkout = () => {
   const { cartItems, getTotalPrice, clearCart } = useCart()
-  const navigate = useNavigate()
+  const router = useRouter()
   const [formData, setFormData] = useState({
     email: '',
     firstName: '',
@@ -25,9 +28,10 @@ const Checkout = () => {
   if (cartItems.length === 0) {
     return (
       <div className="checkout">
+        <Navbar />
         <div className="checkout-container">
           <p>Your cart is empty</p>
-          <button onClick={() => navigate('/')} className="back-to-shop-button">
+          <button onClick={() => router.push('/')} className="back-to-shop-button">
             Back to Shop
           </button>
         </div>
@@ -75,7 +79,7 @@ const Checkout = () => {
       setIsProcessing(false)
       clearCart()
       alert('Order placed successfully! (This is a demo - no actual payment was processed)')
-      navigate('/')
+      router.push('/')
     }, 2000)
   }
 
@@ -85,6 +89,7 @@ const Checkout = () => {
 
   return (
     <div className="checkout">
+      <Navbar />
       <div className="checkout-container">
         <h2>Checkout</h2>
         <form onSubmit={handleSubmit} className="checkout-form">

@@ -1,11 +1,15 @@
+'use client'
+
 import React from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { products } from '../data/products'
+import Navbar from '../../components/Navbar'
 import './ProductListing.css'
 
 const ProductListing = () => {
   return (
     <div className="product-listing">
+      <Navbar />
       <div className="listing-container">
         <div className="listing-header">
           <h2>All Products</h2>
@@ -15,7 +19,7 @@ const ProductListing = () => {
           {products.map(product => (
             <Link
               key={product.id}
-              to={`/product/${product.id}`}
+              href={`/products/${product.id}`}
               className="product-card"
             >
               <div className="product-image-container">

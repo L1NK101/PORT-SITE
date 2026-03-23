@@ -1,6 +1,10 @@
+'use client'
+
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useCart } from '../context/CartContext'
+import Navbar from '../../components/Navbar'
 import './Cart.css'
 
 const Cart = () => {
@@ -11,16 +15,17 @@ const Cart = () => {
     getTotalPrice,
     clearCart,
   } = useCart()
-  const navigate = useNavigate()
+  const router = useRouter()
 
   if (cartItems.length === 0) {
     return (
       <div className="cart">
+        <Navbar />
         <div className="cart-container">
           <h2>Your Cart</h2>
           <div className="empty-cart">
             <p>Your cart is empty</p>
-            <Link to="/" className="continue-shopping-button">
+            <Link href="/" className="continue-shopping-button">
               Continue Shopping
             </Link>
           </div>
@@ -31,6 +36,7 @@ const Cart = () => {
 
   return (
     <div className="cart">
+      <Navbar />
       <div className="cart-container">
         <div className="cart-header">
           <h2>Your Cart</h2>
@@ -40,11 +46,11 @@ const Cart = () => {
           <div className="cart-items">
             {cartItems.map(item => (
               <div key={item.id} className="cart-item">
-                <Link to={`/product/${item.id}`} className="cart-item-image">
+                <Link href={`/products/${item.id}`} className="cart-item-image">
                   <img src={item.image} alt={item.name} />
                 </Link>
                 <div className="cart-item-info">
-                  <Link to={`/product/${item.id}`} className="cart-item-name">
+                  <Link href={`/products/${item.id}`} className="cart-item-name">
                     {item.name}
                   </Link>
                   <p className="cart-item-category">{item.category}</p>
@@ -99,14 +105,14 @@ const Cart = () => {
             </div>
             <button
               className="checkout-button"
-              onClick={() => navigate('/checkout')}
+              onClick={() => router.push('/checkout')}
             >
               Proceed to Checkout
             </button>
             <button className="clear-cart-button" onClick={clearCart}>
               Clear Cart
             </button>
-            <Link to="/" className="continue-shopping-link">
+            <Link href="/" className="continue-shopping-link">
               Continue Shopping
             </Link>
           </div>

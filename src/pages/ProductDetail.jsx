@@ -1,13 +1,18 @@
+'use client'
+
 import React, { useState } from 'react'
-import { useParams, useNavigate, Link } from 'react-router-dom'
+import { useParams, useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { getProductById } from '../data/products'
 import { useCart } from '../context/CartContext'
+import Navbar from '../../components/Navbar'
 import './ProductDetail.css'
 
 const ProductDetail = () => {
-  const { id } = useParams()
-  const navigate = useNavigate()
-  const product = getProductById(id)
+  const params = useParams()
+  const router = useRouter()
+  const productId = typeof params?.id === 'string' ? params.id : params?.id?.[0] || ''
+  const product = getProductById(productId)
   const { addToCart } = useCart()
   const [quantity, setQuantity] = useState(1)
   const [addedToCart, setAddedToCart] = useState(false)
@@ -15,9 +20,10 @@ const ProductDetail = () => {
   if (!product) {
     return (
       <div className="product-detail">
+        <Navbar />
         <div className="detail-container">
           <p>Product not found</p>
-          <Link to="/">Back to shop</Link>
+          <Link href="/">Back to shop</Link>
         </div>
       </div>
     )
@@ -31,7 +37,7 @@ const ProductDetail = () => {
 
   const handleBuyNow = () => {
     addToCart(product, quantity)
-    navigate('/checkout')
+    router.push('/checkout')
   }
 
   const handleQuantityChange = (e) => {
@@ -43,8 +49,9 @@ const ProductDetail = () => {
 
   return (
     <div className="product-detail">
+      <Navbar />
       <div className="detail-container">
-        <button className="back-button" onClick={() => navigate(-1)}>
+        <button className="back-button" onClick={() => router.back()}>
           ← Back
         </button>
         <div className="product-detail-content">

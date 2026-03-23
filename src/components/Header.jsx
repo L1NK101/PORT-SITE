@@ -1,5 +1,7 @@
+'use client'
+
 import React from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { useCart } from '../context/CartContext'
 import './Header.css'
 
@@ -9,12 +11,13 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-container">
-        <Link to="/" className="logo">
+        <Link href="/" className="logo">
           Zone Store
         </Link>
         <nav className="nav">
-          <Link to="/" className="nav-link">Shop</Link>
-          <Link to="/cart" className="nav-link cart-link">
+          <Link href="/" className="nav-link">Shop</Link>
+          <Link href="/products" className="nav-link">Products</Link>
+          <Link href="/checkout" className="nav-link cart-link">
             Cart
             {getTotalItems() > 0 && (
               <span className="cart-badge">{getTotalItems()}</span>

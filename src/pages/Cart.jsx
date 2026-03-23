@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { useCart } from '../context/CartContext'
 import Navbar from '../../components/Navbar'
 import './Cart.css'
@@ -24,9 +25,10 @@ const Cart = () => {
         <div className="cart-container">
           <h2>Your Cart</h2>
           <div className="empty-cart">
-            <p>Your cart is empty</p>
+            <h3>Your cart is feeling lonely</h3>
+            <p>Add a few premium picks and make it yours.</p>
             <Link href="/" className="continue-shopping-button">
-              Continue Shopping
+              Start Shopping
             </Link>
           </div>
         </div>
@@ -47,7 +49,13 @@ const Cart = () => {
             {cartItems.map(item => (
               <div key={item.id} className="cart-item">
                 <Link href={`/products/${item.id}`} className="cart-item-image">
-                  <img src={item.image} alt={item.name} />
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    width={120}
+                    height={120}
+                    loading="lazy"
+                  />
                 </Link>
                 <div className="cart-item-info">
                   <Link href={`/products/${item.id}`} className="cart-item-name">

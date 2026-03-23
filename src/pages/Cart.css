@@ -32,20 +32,27 @@
 .empty-cart {
   text-align: center;
   padding: 5rem 2rem;
-  background-color: var(--white);
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.94));
+  border: 1px solid rgba(129, 140, 248, 0.35);
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+.empty-cart h3 {
+  font-size: 1.5rem;
+  color: #f8fafc;
+  margin-bottom: 0.75rem;
+}
+
 .empty-cart p {
   font-size: 1.25rem;
-  color: var(--text-light);
+  color: #cbd5e1;
   margin-bottom: 2rem;
 }
 
 .continue-shopping-button {
   display: inline-block;
-  background-color: var(--primary-color);
+  background: linear-gradient(120deg, #6366f1, #8b5cf6);
   color: var(--white);
   padding: 1rem 2.5rem;
   text-decoration: none;
@@ -57,7 +64,7 @@
 }
 
 .continue-shopping-button:hover {
-  background-color: var(--primary-dark);
+  background: linear-gradient(120deg, #4f46e5, #7c3aed);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(44, 90, 160, 0.3);
 }

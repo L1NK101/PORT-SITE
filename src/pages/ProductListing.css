@@ -29,6 +29,30 @@
   font-size: 1rem;
 }
 
+.listing-search {
+  margin-top: 1.25rem;
+}
+
+.listing-search-input {
+  width: min(520px, 100%);
+  border: 1px solid rgba(107, 114, 128, 0.28);
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.9), rgba(31, 41, 55, 0.84));
+  color: #e5e7eb;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.listing-search-input::placeholder {
+  color: #a5b4fc;
+}
+
+.listing-search-input:focus {
+  outline: none;
+  border-color: rgba(129, 140, 248, 0.8);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -45,8 +69,8 @@
 }
 
 .product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(79, 70, 229, 0.18);
   border-color: var(--primary-color);
 }
 
@@ -70,6 +94,77 @@
 
 .product-card:hover .product-image {
   transform: scale(1.08);
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #e9ebf0 25%, #f7f8fa 50%, #e9ebf0 75%);
+  background-size: 200% 100%;
+  border-radius: 10px;
+}
+
+.shimmer {
+  animation: shimmer 1.2s linear infinite;
+}
+
+.skeleton-card {
+  pointer-events: none;
+}
+
+.skeleton-line {
+  height: 14px;
+  margin-bottom: 0.75rem;
+}
+
+.skeleton-title {
+  height: 22px;
+  width: 88%;
+}
+
+.skeleton-subtitle {
+  width: 45%;
+}
+
+.skeleton-price {
+  width: 38%;
+  height: 20px;
+}
+
+.search-empty-state {
+  margin: 2rem auto 0;
+  padding: 3rem 2rem;
+  text-align: center;
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.96), rgba(30, 41, 59, 0.96));
+  border: 1px solid rgba(129, 140, 248, 0.35);
+  border-radius: 14px;
+  color: #cbd5e1;
+}
+
+.search-empty-state h3 {
+  font-size: 1.35rem;
+  color: #e2e8f0;
+  margin-bottom: 0.65rem;
+}
+
+.search-empty-state p {
+  margin-bottom: 1.25rem;
+}
+
+.clear-search-button {
+  background: linear-gradient(120deg, #6366f1, #8b5cf6);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.8rem 1.2rem;
+  font-weight: 600;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .out-of-stock {
